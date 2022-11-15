@@ -1,7 +1,11 @@
-// const translationsDir = '../dentally/config/locales';
-const translationsDir = '../dentally/spec/fixtures/locales';
+// const defaultDir = '../dentally/config/locales';
+const defaultDir = '../dentally/spec/fixtures/locales';
+const args = process.argv.slice(2);
+const dir = args[0] || defaultDir
+
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
 function textFromJson(json) {
   if (json === null || json === undefined) return '';
@@ -47,19 +51,47 @@ function *walkSync(dir) {
   }
 }
 
-for (const file of walkSync(translationsDir)) {
+let totalCount = 0;
+let fileCount = 0;
 
+async function processFiles() {
+  for (const file of walkSync(dir)) {
 
-  if (file.extension === '.json') {
-    fs.readFile(file.path, "utf8", (err, jsonString) => {
-      if (err) {
-        console.log("File read failed:", err);
-        return;
+    fileCount += 1;
+
+    if (file.extension === '.json') {
+      try {
+        const fileData = fs.readFileSync(file.path, "utf8")
+        const count = getJsonWordCount(JSON.parse(fileData))
+    
+        totalCount += count;
+    
+        console.log(file.path, `\t`, count)
+      } catch (e) {
+        console.log(e);
       }
+    } else if (file.extension === '.yml') {
 
-      const count = getJsonWordCount(JSON.parse(jsonString))
-
-      console.log(file.path, count)
-    });
-  } 
+      try {
+        const fileData = yaml.load(fs.readFileSync(file.path, "utf8"));
+        const count = getJsonWordCount(fileData)
+    
+        totalCount += count;
+    
+        console.log(file.path, `\t`, count)
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      console.error('Unsupported file type!')
+    }
+  }
 }
+
+async function run() {
+  await processFiles();
+  console.log('Total words:', totalCount, `\nFiles:`, fileCount)
+}
+
+run()
+

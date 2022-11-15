@@ -1,0 +1,23 @@
+{
+  "name": "translations-word-count",
+  "version": "1.0.0",
+  "description": "Word count yaml and json files",
+  "main": "index.js",
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/linearza/translations-word-count.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/linearza/translations-word-count/issues"
+  },
+  "homepage": "https://gitlab.com/linearza/translations-word-count#readme"
+}
