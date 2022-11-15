@@ -7,5 +7,10 @@ Supports a mix of json and yaml files.
 
 To run:
 ```
-node index.js '../my/translation/dir'
+npm start '../my/translations/dir'
+```
+
+Optionally you can pass an file name pattern to exclude:
+```
+npm start '../my/translations/dir' `test-`
 ```
