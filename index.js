@@ -1,6 +1,6 @@
 const args = process.argv.slice(2);
 const DIRECTORY = args[0];
-const EXCLUDE_PATTERN = args[1];
+const EXCLUDE_PATTERNS = args.slice(1);
 
 const fs = require("fs");
 const path = require("path");
@@ -59,7 +59,7 @@ let fileCount = 0;
 
 async function processFiles() {
   for (const file of walkSync(DIRECTORY)) {
-    if (file.path.includes(EXCLUDE_PATTERN)) continue;
+    if (EXCLUDE_PATTERNS.some((pattern) => file.path.includes(pattern))) continue;
 
     fileCount += 1;
 

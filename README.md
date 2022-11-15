@@ -10,7 +10,7 @@ To run:
 npm start '../my/translations/dir'
 ```
 
-Optionally you can pass an file name pattern to exclude:
+Optionally you can pass file name patterns to exclude:
 ```
-npm start '../my/translations/dir' `test-`
+npm start '../my/translations/dir' 'pattern1-' 'patternTwo' 'etc...' 
 ```
