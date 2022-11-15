@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/linearza/translations-word-count.git"
+    "url": "git+https://github.com/linearza/translations-word-count.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/linearza/translations-word-count/issues"
+    "url": "https://github.com/linearza/translations-word-count/issues"
   },
-  "homepage": "https://gitlab.com/linearza/translations-word-count#readme"
+  "homepage": "https://github.com/linearza/translations-word-count#readme"
 }
